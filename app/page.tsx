@@ -46,12 +46,13 @@ export default function Resume() {
   const [cv, setCV] = useState<CV | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/cv") // Replace with Vercel/Render URL if deployed
+    fetch("https://my-resume-wcuu.onrender.com/cv") // Replace with Vercel/Render URL if deployed
       .then((res) => res.json())
       .then(setCV)
       .catch((err) => console.error("Failed to fetch CV", err));
   }, []);
-
+// https://my-resume-wcuu.onrender.com/cv
+// http://localhost:8000/cv
   if (!cv) return <p className="text-center mt-10">Loading CV...</p>;
 
   return (
