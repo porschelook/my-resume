@@ -7,11 +7,12 @@ from cv_data import cv
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # 👈 Frontend address
+    allow_origins=["http://localhost:3000",  "https://my-resume-tau-rose.vercel.app", ],  # 👈 Frontend address
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+ 
 
 class Person(BaseModel):
     id: int
