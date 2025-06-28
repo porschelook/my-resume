@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from typing import List
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-
+from cv_data import cv
 
 app = FastAPI()
 app.add_middleware(
@@ -23,6 +23,9 @@ DB: List[Person] = [
     Person(id=2, name="Bob", age=25),
     Person(id=3, name="Charlie", age=35)    
 ]
+@app.get("/cv")
+def read_root():
+    return cv
 
 @app.get("/api")
 def read_root():

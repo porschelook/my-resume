@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -11,9 +13,9 @@ function App() {
   const [people, setPeople] = useState<Person[]>([]);
 
   useEffect(() => {
-    axios.get<Person[]>('/api')
-      .then(res => setPeople(res.data))
-      .catch(err => console.error("Failed to fetch people:", err));
+   axios.get<Person[]>('http://127.0.0.1:8000/api')
+  .then(res => setPeople(res.data))
+  .catch(err => console.error("Failed to fetch people:", err.response?.status, err.message));
   }, []);
 
   return (
