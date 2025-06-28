@@ -22,6 +22,44 @@ type CV = {
   };
 };
 
+type Education = {
+  school: string;
+  degree: string;
+  location: string;
+  period: string;
+  details: string[];
+};
+
+type Experience = {
+  company: string;
+  role: string;
+  location: string;
+  period: string;
+  highlights: string[];
+};
+
+type Skills = {
+  languages: string[];
+  frameworks: string[];
+  tools: string[];
+  other: string[];
+};
+
+type CV = {
+  name: string;
+  contact: {
+    email: string;
+    phone: string;
+    linkedin: string;
+    location: string;
+  };
+  summary: string;
+  education: Education[];
+  experience: Experience[];
+  skills: Skills;
+};
+
+
 export default function Resume() {
   const [cv, setCV] = useState<CV | null>(null);
 
@@ -50,7 +88,7 @@ export default function Resume() {
 
       <section className="mb-6">
         <h2 className="text-xl font-semibold border-b mb-2">Education</h2>
-        {cv.education.map((edu, idx) => (
+        {cv.education.map((edu: Education, idx) => (
           <div key={idx} className="mb-4">
             <h3 className="font-medium">{edu.degree}, {edu.school}</h3>
             <p className="text-sm text-gray-700 dark:text-gray-400">{edu.location} ({edu.period})</p>
@@ -65,7 +103,7 @@ export default function Resume() {
 
       <section className="mb-6">
         <h2 className="text-xl font-semibold border-b mb-2">Experience</h2>
-        {cv.experience.map((exp, idx) => (
+        {cv.experience.map((exp:Experience, idx) => (
           <div key={idx} className="mb-4">
             <h3 className="font-medium">{exp.role}, {exp.company}</h3>
             <p className="text-sm text-gray-700 dark:text-gray-400">{exp.location} ({exp.period})</p>
