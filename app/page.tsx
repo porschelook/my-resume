@@ -2,25 +2,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-
-type CV = {
-  name: string;
-  contact: {
-    email: string;
-    phone: string;
-    linkedin: string;
-    location: string;
-  };
-  summary: string;
-  education: any[];
-  experience: any[];
-  skills: {
-    languages: string[];
-    frameworks: string[];
-    tools: string[];
-    other: string[];
-  };
-};
+ 
 
 type Education = {
   school: string;
