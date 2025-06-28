@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+  fastapi_app:
+    build: .
+    # or
+    # build:
+    #   context: ./backend
+    #   dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+
+    restart: always
