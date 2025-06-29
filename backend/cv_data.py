@@ -56,11 +56,12 @@ cv = {
         }
     ],
     "skills": {
-        "languages": ["JavaScript", "Python", "C#", "C/C++", "Java", "SQL"],
-        "frameworks": ["React", "React Native", "Node.js", ".NET Core", "Django"],
-        "tools": ["Git", "Docker", "Jira", "Postman", "Figma"],
-        "databases": ["MySQL", "MongoDB", "SQLite"],
-        "cloud": ["AWS", "Azure"],
+        "languages": ["JavaScript", "TypeScript", "Python", "C#", "C/C++", "Java", "SQL"],
+        "frameworks_libraries": ["React", "React Native", "Next.js", "Node.js", ".NET Core", "Django", "FastAPI"],
+        "tools_platforms": ["Git", "Docker", "Jira", "Postman", "Figma", "Vercel", "Render", "pgAdmin"],
+        "databases": ["PostgreSQL", "MySQL", "MongoDB", "SQLite"],
+        "styling": ["Tailwind CSS"],
+        "cloud": ["AWS"],
         "other": ["Agile Methodologies", "RESTful APIs", "Unit Testing"]
     }
 }

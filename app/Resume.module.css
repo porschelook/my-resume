@@ -1,0 +1,114 @@
+.main {
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5rem;
+    color: #1a202c;
+    background-color: #ffffff;
+    min-height: 100vh;
+    /* cursor: url("https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4bb.png"), auto; */
+}
+
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.header {
+    flex: 50%;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 1.875rem;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: fadeSlideIn 1s ease-out forwards;
+}
+
+@keyframes fadeSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.location {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.contact {
+    font-size: 0.875rem;
+}
+
+.linkedin {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+.section {
+    margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    border-bottom: 1px solid #d1d5db;
+    margin-bottom: 0.5rem;
+
+}
+
+.eduItem,
+.expItem {
+    margin-bottom: 1rem;
+}
+
+.eduTitle,
+.expTitle {
+    font-weight: 500;
+}
+
+.eduLocation,
+.expLocation {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.list {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    font-size: 0.875rem;
+}
+
+.skillSection {
+    margin-bottom: 0.5rem;
+}
+
+.skillLabel {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.profileImage {
+    border-radius: 50%;
+    margin-top: 1rem;
+    width: 150px;
+    height: 150px;
+}
+.tabBar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+.tab {
+    background-color: #f7fafc;
+    border: 1px solid #cbd5e0;
+    border-radius: 0.375rem;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
