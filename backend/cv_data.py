@@ -56,9 +56,9 @@ cv = {
             "location": "Bangkok, Thailand",
             "period": "2020",
             "highlights": [
-                "Led QA planning and execution for multiple fintech applications",
-                "Created custom test tools and scripts to automate repetitive QA tasks",
-                "Used Jira to report issues and improve team testing velocity"
+                "Participated in QA planning and executed tests for multiple fintech applications",
+                "Developed and maintained test cases and tools to support testing activities",
+                "Used Jira to report issues and help improve team testing efficiency"
             ]
         }
     ],
