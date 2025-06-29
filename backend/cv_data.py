@@ -4,20 +4,26 @@ cv = {
     "name": "Suphalerk Lortaraprasert",
     "contact": {
         "email": "porschelook@gmail.com",
-        "phone": "+66 (860)27878",
+        "phone": "+66 (860) 278-878",
         "linkedin": "https://www.linkedin.com/in/suphalerk-lortaraprasert/",
-        "location": " BKK 10310 Thailand"
+        "location": "Bangkok, Thailand"
     },
-    "summary": "Experienced software engineer with 2 years in software development, specializing in frontend and backend technologies...",
+    "summary": (
+        "Full-stack software engineer with 2 years of experience building end-to-end web and mobile applications "
+        "using modern technologies including React, Next.js, FastAPI, and .NET Core. Skilled in both frontend UI development "
+        "and backend API design, with strong proficiency in JavaScript, TypeScript, Python, and C#. Experienced in database design "
+        "(PostgreSQL, MongoDB), containerization with Docker, and CI/CD automation. Adept at collaborating in Agile teams, writing "
+        "clean and maintainable code, and delivering high-performance applications from prototype to production."
+    ),
     "education": [
         {
             "school": "Oregon State University",
             "degree": "Master of Engineering in Computer Science",
             "location": "Corvallis, OR",
-            "period": "2022 - Spring 2024",
+            "period": "2022 – Spring 2024",
             "details": [
-                "Courses: Parallel Programming, AI, HCI, DBMS",
-                "AI Project: Vacuum Cleaner Agent with AO* search",
+                "Courses: Parallel Programming, Artificial Intelligence, Human-Computer Interaction, Database Management Systems",
+                "Project: Vacuum Cleaner Agent using AO* search in dynamic environments",
                 "GitHub: https://github.com/porschelook/Artificial-Intelligence/tree/main/Final"
             ]
         },
@@ -25,9 +31,9 @@ cv = {
             "school": "Thammasat University",
             "degree": "Bachelor of Science in Computer Science",
             "location": "Rangsit, Thailand",
-            "period": "2016 - 2020",
+            "period": "2016 – 2020",
             "details": [
-                "Thesis: Alzheimer's MRI Detection Web App (76.86% accuracy)",
+                "Thesis: Alzheimer's MRI detection web application using image processing and SVM (76.86% accuracy)",
                 "GitHub: https://github.com/porschelook/Web-application-detecting-alzheimer.git"
             ]
         }
@@ -37,11 +43,11 @@ cv = {
             "company": "INF Systems & Engineering (Thailand) Ltd.",
             "role": "Software Developer",
             "location": "Bangkok, Thailand",
-            "period": "2020 - 2022",
+            "period": "2020 – 2022",
             "highlights": [
-                "Developed reusable React components",
-                "Integrated backend using C#, MVC",
-                "Reduced bugs with rigorous testing (React Native, .NET Core)"
+                "Developed reusable React and React Native components for internal platforms",
+                "Integrated backend systems using C#, .NET Core, and MVC architecture",
+                "Reduced bugs and improved reliability through unit and integration testing"
             ]
         },
         {
@@ -50,15 +56,22 @@ cv = {
             "location": "Bangkok, Thailand",
             "period": "2020",
             "highlights": [
-                "Led QA test plans and performance testing",
-                "Used Jira, created custom test tools for better efficiency"
+                "Led QA planning and execution for multiple fintech applications",
+                "Created custom test tools and scripts to automate repetitive QA tasks",
+                "Used Jira to report issues and improve team testing velocity"
             ]
         }
     ],
     "skills": {
         "languages": ["JavaScript", "TypeScript", "Python", "C#", "C/C++", "Java", "SQL"],
-        "frameworks_libraries": ["React", "React Native", "Next.js", "Node.js", ".NET Core", "Django", "FastAPI"],
-        "tools_platforms": ["Git", "Docker", "Jira", "Postman", "Figma", "Vercel", "Render", "pgAdmin"],
+        "frameworks_libraries": [
+            "React", "React Native", "Next.js", "Node.js",
+            ".NET Core", "Django", "FastAPI"
+        ],
+        "tools_platforms": [
+            "Git", "Docker", "Jira", "Postman",
+            "Figma", "Vercel", "Render", "pgAdmin"
+        ],
         "databases": ["PostgreSQL", "MySQL", "MongoDB", "SQLite"],
         "styling": ["Tailwind CSS"],
         "cloud": ["AWS"],

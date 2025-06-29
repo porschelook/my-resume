@@ -51,15 +51,15 @@ export default function Resume() {
   const [cv, setCV] = useState<CV | null>(null);
 
   // Section refs
-  const educationRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
-  const experienceRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
-  const skillsRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
-  const summaryRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
-  const gitRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
+  const educationRef = useRef<HTMLDivElement>(null!);
+  const experienceRef = useRef<HTMLDivElement>(null!);
+  const skillsRef = useRef<HTMLDivElement>(null!);
+  const summaryRef = useRef<HTMLDivElement>(null!);
+  const gitRef = useRef<HTMLDivElement>(null!);
 
   // Fetch CV data
   useEffect(() => {
-    fetch("https://my-resume-wcuu.onrender.com/cv")
+    fetch("http://127.0.0.1:8000/cv")
       .then((res) => res.json())
       .then(setCV)
       .catch((err) => console.error("Failed to fetch CV", err));
@@ -93,11 +93,11 @@ export default function Resume() {
   return (
     <main className={styles.main}>
       {/* Tab Bar */}
-      <nav className={styles.tabBar}>
+      <nav className={styles.tabBar} aria-label="Resume Navigation">
+        <button className={styles.tab} onClick={() => scrollToSection("Professional_Summary")}>Professional Summary</button>
         <button className={styles.tab} onClick={() => scrollToSection("Education")}>Education</button>
         <button className={styles.tab} onClick={() => scrollToSection("Experience")}>Experience</button>
         <button className={styles.tab} onClick={() => scrollToSection("Skills")}>Skills</button>
-        <button className={styles.tab} onClick={() => scrollToSection("Professional_Summary")}>Professional Summary</button>
         <a
           className={styles.tab}
           href="https://github.com/porschelook"
@@ -121,8 +121,17 @@ export default function Resume() {
         <div className={styles.header}>
           <h1 className={styles.title}>{cv.name}</h1>
           <p className={styles.location}>{cv.contact.location}</p>
-          <p className={styles.contact}>{cv.contact.email} | {cv.contact.phone}</p>
-          <a href={cv.contact.linkedin} className={styles.linkedin} target="_blank">LinkedIn</a>
+          <p className={styles.contact}>
+            <a href={`mailto:${cv.contact.email}`} className={styles.email}>{cv.contact.email}</a> | {cv.contact.phone}
+          </p>
+          <a
+            href={cv.contact.linkedin}
+            className={styles.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
         </div>
         <Image
           src="/profile_pic.jpg"
@@ -160,7 +169,7 @@ export default function Resume() {
         <h2 className={styles.sectionTitle}>Skills</h2>
         {skillsList.map(([section, items]) => (
           <div key={section} className={styles.skillSection}>
-            <strong className={styles.skillLabel}>{section}:</strong>{" "}
+            <strong className={styles.skillLabel}>{section.replace(/_/g, " ")}:</strong>{" "}
             {(items as string[]).join(", ")}
           </div>
         ))}
