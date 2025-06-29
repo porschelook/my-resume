@@ -6,6 +6,7 @@ import Image from 'next/image';
 import styles from './Resume.module.css';
 import EducationItem from './components/EducationItem';
 import ExperienceItem from './components/ExperienceItem';
+import { FaUser, FaGraduationCap, FaBriefcase, FaTools, FaGithub, FaLinkedin } from "react-icons/fa";
 
 // --- Type Definitions ---
 type Education = {
@@ -47,8 +48,8 @@ type CV = {
 
 // --- Main Component ---
 export default function Resume() {
-  // State
   const [cv, setCV] = useState<CV | null>(null);
+  const [activeTab, setActiveTab] = useState<string>("Professional_Summary");
 
   // Section refs
   const educationRef = useRef<HTMLDivElement>(null!);
@@ -71,8 +72,9 @@ export default function Resume() {
     return Object.entries(cv.skills);
   }, [cv]);
 
-  // Scroll to section
+  // Scroll to section and set active tab
   const scrollToSection = (sectionName: string) => {
+    setActiveTab(sectionName);
     const refs: Record<string, React.RefObject<HTMLDivElement>> = {
       Education: educationRef,
       Experience: experienceRef,
@@ -94,26 +96,55 @@ export default function Resume() {
     <main className={styles.main}>
       {/* Tab Bar */}
       <nav className={styles.tabBar} aria-label="Resume Navigation">
-        <button className={styles.tab} onClick={() => scrollToSection("Professional_Summary")}>Professional Summary</button>
-        <button className={styles.tab} onClick={() => scrollToSection("Education")}>Education</button>
-        <button className={styles.tab} onClick={() => scrollToSection("Experience")}>Experience</button>
-        <button className={styles.tab} onClick={() => scrollToSection("Skills")}>Skills</button>
+        <button
+          className={`${styles.tab} ${activeTab === "Professional_Summary" ? styles.activeTab : ""}`}
+          onClick={() => scrollToSection("Professional_Summary")}
+          aria-label="Professional Summary"
+        >
+          <FaUser style={{ marginRight: 8 }} /> Summary
+        </button>
+        <button
+          className={`${styles.tab} ${activeTab === "Education" ? styles.activeTab : ""}`}
+          onClick={() => scrollToSection("Education")}
+          aria-label="Education"
+        >
+          <FaGraduationCap style={{ marginRight: 8 }} /> Education
+        </button>
+        <button
+          className={`${styles.tab} ${activeTab === "Experience" ? styles.activeTab : ""}`}
+          onClick={() => scrollToSection("Experience")}
+          aria-label="Experience"
+        >
+          <FaBriefcase style={{ marginRight: 8 }} /> Experience
+        </button>
+        <button
+          className={`${styles.tab} ${activeTab === "Skills" ? styles.activeTab : ""}`}
+          onClick={() => scrollToSection("Skills")}
+          aria-label="Skills"
+        >
+          <FaTools style={{ marginRight: 8 }} /> Skills
+        </button>
         <a
           className={styles.tab}
           href="https://github.com/porschelook"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="GitHub"
+          title="GitHub"
         >
-          Git
+          <FaGithub style={{ marginRight: 8 }} /> Git
         </a>
         <a
           className={styles.tab}
           href="https://www.linkedin.com/in/suphalerk-lortaraprasert/"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          title="LinkedIn"
         >
-          LinkedIn
+          <FaLinkedin style={{ marginRight: 8 }} /> LinkedIn
         </a>
+         
       </nav>
 
       {/* Header */}
@@ -144,13 +175,13 @@ export default function Resume() {
 
       {/* Professional Summary */}
       <section className={styles.section} ref={summaryRef}>
-        <h2 className={styles.sectionTitle}>Professional Summary</h2>
+        <h2 className={styles.sectionTitle}><FaUser style={{marginRight: 8}} /> Professional Summary</h2>
         <p>{cv.summary}</p>
       </section>
 
       {/* Education */}
       <section className={styles.section} ref={educationRef}>
-        <h2 className={styles.sectionTitle}>Education</h2>
+        <h2 className={styles.sectionTitle}><FaGraduationCap style={{marginRight: 8}} /> Education</h2>
         {cv.education.map((edu, idx) => (
           <EducationItem key={idx} edu={edu} />
         ))}
@@ -158,7 +189,7 @@ export default function Resume() {
 
       {/* Experience */}
       <section className={styles.section} ref={experienceRef}>
-        <h2 className={styles.sectionTitle}>Experience</h2>
+        <h2 className={styles.sectionTitle}><FaBriefcase style={{marginRight: 8}} /> Experience</h2>
         {cv.experience.map((exp, idx) => (
           <ExperienceItem key={idx} exp={exp} />
         ))}
@@ -166,7 +197,7 @@ export default function Resume() {
 
       {/* Skills */}
       <section className={styles.section} ref={skillsRef}>
-        <h2 className={styles.sectionTitle}>Skills</h2>
+        <h2 className={styles.sectionTitle}><FaTools style={{marginRight: 8}} /> Skills</h2>
         {skillsList.map(([section, items]) => (
           <div key={section} className={styles.skillSection}>
             <strong className={styles.skillLabel}>{section.replace(/_/g, " ")}:</strong>{" "}

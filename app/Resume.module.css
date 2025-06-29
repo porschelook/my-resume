@@ -114,6 +114,22 @@
     margin-top: 1rem;
     width: 150px;
     height: 150px;
+    object-fit: cover;
+}
+
+@media (max-width: 900px) {
+    .profileImage {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 600px) {
+    .profileImage {
+        width: 90px;
+        height: 90px;
+        margin-top: 0.5rem;
+    }
 }
 
 .tabBar {
