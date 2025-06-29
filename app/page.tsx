@@ -164,7 +164,7 @@ export default function Resume() {
             LinkedIn
           </a>
         </div>
-        <img
+        <Image
           src="/profile_pic.jpg"
           alt="Profile Picture"
           width={150}
