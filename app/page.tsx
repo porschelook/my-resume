@@ -61,10 +61,21 @@ export default function Resume() {
   // Fetch CV data
   useEffect(() => {
     fetch("http://127.0.0.1:8000/cv")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Local API failed");
+        return res.json();
+      })
       .then(setCV)
-      .catch((err) => console.error("Failed to fetch CV", err));
+      .catch(() => {
+        // Fallback to remote API if local fails
+        fetch("https://my-resume-wcuu.onrender.com/cv")
+          .then((res) => res.json())
+          .then(setCV)
+          .catch((err) => console.error("Failed to fetch CV from both sources", err));
+      });
+      
   }, []);
+
 
   // Memoized skills list
   const skillsList = useMemo(() => {
