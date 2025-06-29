@@ -4,7 +4,10 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import styles from './Resume.module.css';
+import EducationItem from './components/EducationItem';
+import ExperienceItem from './components/ExperienceItem';
 
+// --- Type Definitions ---
 type Education = {
   school: string;
   degree: string;
@@ -42,38 +45,40 @@ type CV = {
   skills: Skills;
 };
 
-
+// --- Main Component ---
 export default function Resume() {
+  // State
   const [cv, setCV] = useState<CV | null>(null);
 
-  // Create refs for each section
-  const educationRef = useRef<HTMLDivElement>(null as unknown as HTMLDivElement);
-  const experienceRef = useRef<HTMLDivElement>(null as unknown as HTMLDivElement);
-  const skillsRef = useRef<HTMLDivElement>(null as unknown as HTMLDivElement);
-  const summaryRef = useRef<HTMLDivElement>(null as unknown as HTMLDivElement);
+  // Section refs
+  const educationRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
+  const experienceRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
+  const skillsRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
+  const summaryRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
+  const gitRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
 
+  // Fetch CV data
   useEffect(() => {
-    fetch("https://my-resume-wcuu.onrender.com/cv") // Replace with Vercel/Render URL if deployed
+    fetch("https://my-resume-wcuu.onrender.com/cv")
       .then((res) => res.json())
       .then(setCV)
       .catch((err) => console.error("Failed to fetch CV", err));
   }, []);
 
-  // Memoize the skills list for performance
+  // Memoized skills list
   const skillsList = useMemo(() => {
     if (!cv) return [];
     return Object.entries(cv.skills);
   }, [cv]);
 
-  if (!cv) return <p className={styles.main}>Loading CV...</p>;
-
-  // Scroll to section using refs
+  // Scroll to section
   const scrollToSection = (sectionName: string) => {
     const refs: Record<string, React.RefObject<HTMLDivElement>> = {
       Education: educationRef,
       Experience: experienceRef,
       Skills: skillsRef,
       Professional_Summary: summaryRef,
+      Git: gitRef,
     };
     const ref = refs[sectionName];
     if (ref && ref.current) {
@@ -81,14 +86,37 @@ export default function Resume() {
     }
   };
 
+  // Loading state
+  if (!cv) return <p className={styles.main}>Loading CV...</p>;
+
+  // --- Render ---
   return (
     <main className={styles.main}>
+      {/* Tab Bar */}
       <nav className={styles.tabBar}>
         <button className={styles.tab} onClick={() => scrollToSection("Education")}>Education</button>
         <button className={styles.tab} onClick={() => scrollToSection("Experience")}>Experience</button>
         <button className={styles.tab} onClick={() => scrollToSection("Skills")}>Skills</button>
         <button className={styles.tab} onClick={() => scrollToSection("Professional_Summary")}>Professional Summary</button>
+        <a
+          className={styles.tab}
+          href="https://github.com/porschelook"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Git
+        </a>
+        <a
+          className={styles.tab}
+          href="https://www.linkedin.com/in/suphalerk-lortaraprasert/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+        </a>
       </nav>
+
+      {/* Header */}
       <header className={styles.headerContainer}>
         <div className={styles.header}>
           <h1 className={styles.title}>{cv.name}</h1>
@@ -96,7 +124,6 @@ export default function Resume() {
           <p className={styles.contact}>{cv.contact.email} | {cv.contact.phone}</p>
           <a href={cv.contact.linkedin} className={styles.linkedin} target="_blank">LinkedIn</a>
         </div>
-
         <Image
           src="/profile_pic.jpg"
           alt="Profile Picture"
@@ -106,41 +133,29 @@ export default function Resume() {
         />
       </header>
 
+      {/* Professional Summary */}
       <section className={styles.section} ref={summaryRef}>
         <h2 className={styles.sectionTitle}>Professional Summary</h2>
         <p>{cv.summary}</p>
       </section>
 
+      {/* Education */}
       <section className={styles.section} ref={educationRef}>
         <h2 className={styles.sectionTitle}>Education</h2>
-        {cv.education.map((edu: Education, idx) => (
-          <div key={idx} className={styles.eduItem}>
-            <h3 className={styles.eduTitle}>{edu.degree}, {edu.school}</h3>
-            <p className={styles.eduLocation}>{edu.location} ({edu.period})</p>
-            <ul className={styles.list}>
-              {edu.details.map((line: string, i: number) => (
-                <li key={i}>{line}</li>
-              ))}
-            </ul>
-          </div>
+        {cv.education.map((edu, idx) => (
+          <EducationItem key={idx} edu={edu} />
         ))}
       </section>
 
+      {/* Experience */}
       <section className={styles.section} ref={experienceRef}>
         <h2 className={styles.sectionTitle}>Experience</h2>
-        {cv.experience.map((exp: Experience, idx) => (
-          <div key={idx} className={styles.expItem}>
-            <h3 className={styles.expTitle}>{exp.role}, {exp.company}</h3>
-            <p className={styles.expLocation}>{exp.location} ({exp.period})</p>
-            <ul className={styles.list}>
-              {exp.highlights.map((item: string, i: number) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </div>
+        {cv.experience.map((exp, idx) => (
+          <ExperienceItem key={idx} exp={exp} />
         ))}
       </section>
 
+      {/* Skills */}
       <section className={styles.section} ref={skillsRef}>
         <h2 className={styles.sectionTitle}>Skills</h2>
         {skillsList.map(([section, items]) => (
