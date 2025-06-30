@@ -6,7 +6,7 @@ cv = {
         "email": "porschelook@gmail.com",
         "phone": "+66 (860) 278-878",
         "linkedin": "https://www.linkedin.com/in/suphalerk-lortaraprasert/",
-        "location": "Bangkok, Thailand"
+        "location": "Bangkok, Thailand",
     },
     "summary": (
         "Full-stack software engineer with 2 years of experience building end-to-end web and mobile applications "
@@ -24,8 +24,8 @@ cv = {
             "details": [
                 "Courses: Parallel Programming, Artificial Intelligence, Human-Computer Interaction, Database Management Systems",
                 "Project: Vacuum Cleaner Agent using AO* search in dynamic environments",
-                "GitHub: https://github.com/porschelook/Artificial-Intelligence/tree/main/Final"
-            ]
+                "GitHub: https://github.com/porschelook/Artificial-Intelligence/tree/main/Final",
+            ],
         },
         {
             "school": "Thammasat University",
@@ -34,9 +34,9 @@ cv = {
             "period": "2016 – 2020",
             "details": [
                 "Thesis: Alzheimer's MRI detection web application using image processing and SVM (76.86% accuracy)",
-                "GitHub: https://github.com/porschelook/Web-application-detecting-alzheimer.git"
-            ]
-        }
+                "GitHub: https://github.com/porschelook/Web-application-detecting-alzheimer.git",
+            ],
+        },
     ],
     "experience": [
         {
@@ -47,8 +47,8 @@ cv = {
             "highlights": [
                 "Developed reusable React and React Native components for internal platforms",
                 "Integrated backend systems using C#, .NET Core, and MVC architecture",
-                "Reduced bugs and improved reliability through unit and integration testing"
-            ]
+                "Reduced bugs and improved reliability through unit and integration testing",
+            ],
         },
         {
             "company": "Central JD Fintech Holding Co., Ltd.",
@@ -58,23 +58,54 @@ cv = {
             "highlights": [
                 "Participated in QA planning and executed tests for multiple fintech applications",
                 "Developed and maintained test cases and tools to support testing activities",
-                "Used Jira to report issues and help improve team testing efficiency"
-            ]
-        }
+                "Used Jira to report issues and help improve team testing efficiency",
+            ],
+        },
     ],
     "skills": {
-        "languages": ["JavaScript", "TypeScript", "Python", "C#", "C/C++", "Java", "SQL"],
+        "languages": [
+            "JavaScript",
+            "TypeScript",
+            "Python",
+            "C#",
+            "C/C++",
+            "Java",
+            "SQL",
+        ],
         "frameworks_libraries": [
-            "React", "React Native", "Next.js", "Node.js",
-            ".NET Core", "Django", "FastAPI"
+            "React",
+            "React Native",
+            "Next.js",
+            "Node.js",
+            ".NET Core",
+            "Django",
+            "FastAPI",
         ],
         "tools_platforms": [
-            "Git", "Docker", "Jira", "Postman",
-            "Figma", "Vercel", "Render", "pgAdmin"
+            "Git",
+            "Docker",
+            "Jira",
+            "Postman",
+            "Figma",
+            "Vercel",
+            "Render",
+            "pgAdmin",
         ],
         "databases": ["PostgreSQL", "MySQL", "MongoDB", "SQLite"],
         "styling": ["Tailwind CSS"],
         "cloud": ["AWS"],
-        "other": ["Agile Methodologies", "RESTful APIs", "Unit Testing"]
-    }
+        "other": ["Agile Methodologies", "RESTful APIs", "Unit Testing"],
+    },
+    "side_projects": [
+        {
+            "title": "Alzheimer's Detection Web App",
+            "description": "A web application that detects Alzheimer's disease using MRI images and SVM.",
+            "link": "test",
+        },
+         {
+            "title": "Alzheimer's Detection Web App",
+            "description": "A web application that detects Alzheimer's disease using MRI images and SVM.",
+            "link": "test",
+        },
+    ],
 }

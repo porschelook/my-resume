@@ -6,7 +6,7 @@ import Image from 'next/image';
 import styles from './Resume.module.css';
 import EducationItem from './components/EducationItem';
 import ExperienceItem from './components/ExperienceItem';
-import { FaUser, FaGraduationCap, FaBriefcase, FaTools, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaUser, FaGraduationCap, FaBriefcase, FaTools, FaGithub, FaLinkedin, FaFolderOpen } from "react-icons/fa";
 
 // --- Type Definitions ---
 type Education = {
@@ -44,6 +44,11 @@ type CV = {
   education: Education[];
   experience: Experience[];
   skills: Skills;
+  side_projects: {
+    title: string;
+    description: string;
+    link: string;
+  }[];
 };
 
 // --- Main Component ---
@@ -57,7 +62,7 @@ export default function Resume() {
   const skillsRef = useRef<HTMLDivElement>(null!);
   const summaryRef = useRef<HTMLDivElement>(null!);
   const gitRef = useRef<HTMLDivElement>(null!);
-
+  const sideProjectsRef = useRef<HTMLDivElement>(null!);
   // Fetch CV data
   useEffect(() => {
     fetch("http://127.0.0.1:8000/cv")
@@ -73,7 +78,7 @@ export default function Resume() {
           .then(setCV)
           .catch((err) => console.error("Failed to fetch CV from both sources", err));
       });
-      
+
   }, []);
 
 
@@ -92,6 +97,7 @@ export default function Resume() {
       Skills: skillsRef,
       Professional_Summary: summaryRef,
       Git: gitRef,
+      Side_Projects: sideProjectsRef,
     };
     const ref = refs[sectionName];
     if (ref && ref.current) {
@@ -135,27 +141,17 @@ export default function Resume() {
         >
           <FaTools style={{ marginRight: 8 }} /> Skills
         </button>
+
+
         <a
           className={styles.tab}
-          href="https://github.com/porschelook"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-          title="GitHub"
+          href="#"
+          onClick={() => scrollToSection("Side_Projects")}
+          aria-label="Side Projects"
+          title="Side Projects"
         >
-          <FaGithub style={{ marginRight: 8 }} /> Git
+          <FaFolderOpen style={{ marginRight: 8 }} /> Side Projects
         </a>
-        <a
-          className={styles.tab}
-          href="https://www.linkedin.com/in/suphalerk-lortaraprasert/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-          title="LinkedIn"
-        >
-          <FaLinkedin style={{ marginRight: 8 }} /> LinkedIn
-        </a>
-         
       </nav>
 
       {/* Header */}
@@ -166,13 +162,33 @@ export default function Resume() {
           <p className={styles.contact}>
             <a href={`mailto:${cv.contact.email}`} className={styles.email}>{cv.contact.email}</a> | {cv.contact.phone}
           </p>
-          <a
+          {/* <a
             href={cv.contact.linkedin}
             className={styles.linkedin}
             target="_blank"
             rel="noopener noreferrer"
           >
             LinkedIn
+          </a> */}
+          <a
+            className={styles.tab}
+            href="https://github.com/porschelook"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <FaGithub  style={{ marginRight: 8 }} /> Git
+          </a>
+          <a
+            className={styles.tab}
+            href="https://www.linkedin.com/in/suphalerk-lortaraprasert/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            title="LinkedIn"
+          >
+            <FaLinkedin style={{ marginRight: 8 }} /> LinkedIn
           </a>
         </div>
         <Image
@@ -182,17 +198,18 @@ export default function Resume() {
           height={150}
           className={styles.profileImage}
         />
+
       </header>
 
       {/* Professional Summary */}
       <section className={styles.section} ref={summaryRef}>
-        <h2 className={styles.sectionTitle}><FaUser style={{marginRight: 8}} /> Professional Summary</h2>
+        <h2 className={styles.sectionTitle}><FaUser style={{ marginRight: 8 }} /> Professional Summary</h2>
         <p>{cv.summary}</p>
       </section>
 
       {/* Education */}
       <section className={styles.section} ref={educationRef}>
-        <h2 className={styles.sectionTitle}><FaGraduationCap style={{marginRight: 8}} /> Education</h2>
+        <h2 className={styles.sectionTitle}><FaGraduationCap style={{ marginRight: 8 }} /> Education</h2>
         {cv.education.map((edu, idx) => (
           <EducationItem key={idx} edu={edu} />
         ))}
@@ -200,7 +217,7 @@ export default function Resume() {
 
       {/* Experience */}
       <section className={styles.section} ref={experienceRef}>
-        <h2 className={styles.sectionTitle}><FaBriefcase style={{marginRight: 8}} /> Experience</h2>
+        <h2 className={styles.sectionTitle}><FaBriefcase style={{ marginRight: 8 }} /> Experience</h2>
         {cv.experience.map((exp, idx) => (
           <ExperienceItem key={idx} exp={exp} />
         ))}
@@ -208,11 +225,36 @@ export default function Resume() {
 
       {/* Skills */}
       <section className={styles.section} ref={skillsRef}>
-        <h2 className={styles.sectionTitle}><FaTools style={{marginRight: 8}} /> Skills</h2>
+        <h2 className={styles.sectionTitle}><FaTools style={{ marginRight: 8 }} /> Skills</h2>
         {skillsList.map(([section, items]) => (
           <div key={section} className={styles.skillSection}>
             <strong className={styles.skillLabel}>{section.replace(/_/g, " ")}:</strong>{" "}
             {(items as string[]).join(", ")}
+          </div>
+        ))}
+      </section>
+
+
+ 
+      {/* Side Project */}
+      <section className={styles.section} ref={sideProjectsRef}>
+        <h2 className={styles.sectionTitle}>
+          <FaFolderOpen style={{ marginRight: 8 }} /> Side Project
+        </h2>
+        {cv.side_projects.map((sp, idx) => (
+          <div key={sp.title + idx} className={styles.sideProjectItem}>
+            <span className={styles.sideProjectTitle}>{sp.title}</span>
+            <span className={styles.sideProjectDesc}>{sp.description}</span>
+            {sp.link && (
+              <a
+                href={sp.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.projectLink}
+              >
+                [Link]
+              </a>
+            )}
           </div>
         ))}
       </section>
