@@ -98,9 +98,9 @@ cv = {
     },
     "side_projects": [
         {
-            "title": "Alzheimer's Detection Web App",
-            "description": "A web application that detects Alzheimer's disease using MRI images and SVM.",
-            "link": "test",
+            "title": "Search Pokémon",
+            "description": "Search Pokémon is responsive web application that allows users to search for Pokémon by name and view detailed information using a GraphQL API. Built with Next.js, TypeScript",
+            "link": "https://search-pokemon-test.vercel.app/",
         },
          {
             "title": "Alzheimer's Detection Web App",

@@ -6,8 +6,8 @@ import Image from 'next/image';
 import styles from './Resume.module.css';
 import EducationItem from './components/EducationItem';
 import ExperienceItem from './components/ExperienceItem';
-import { FaUser, FaGraduationCap, FaBriefcase, FaTools, FaGithub, FaLinkedin, FaFolderOpen } from "react-icons/fa";
-
+import { FaUser, FaGraduationCap, FaBriefcase, FaTools, FaGithub, FaLinkedin, FaFolderOpen, FaDownload, FaEnvelope } from "react-icons/fa";
+import ContactForm from './components/ContactForm';
 // --- Type Definitions ---
 type Education = {
   school: string;
@@ -63,6 +63,10 @@ export default function Resume() {
   const summaryRef = useRef<HTMLDivElement>(null!);
   const gitRef = useRef<HTMLDivElement>(null!);
   const sideProjectsRef = useRef<HTMLDivElement>(null!);
+  const aboutRef = useRef<HTMLDivElement>(null!);
+  const projectsRef = useRef<HTMLDivElement>(null!);
+  const resumeRef = useRef<HTMLDivElement>(null!);
+  const contactRef = useRef<HTMLDivElement>(null!);
   // Fetch CV data
   useEffect(() => {
     fetch("http://127.0.0.1:8000/cv")
@@ -98,6 +102,10 @@ export default function Resume() {
       Professional_Summary: summaryRef,
       Git: gitRef,
       Side_Projects: sideProjectsRef,
+      About: aboutRef,
+      Projects: projectsRef,
+      Resume: resumeRef,
+      Contact: contactRef,
     };
     const ref = refs[sectionName];
     if (ref && ref.current) {
@@ -178,7 +186,7 @@ export default function Resume() {
             aria-label="GitHub"
             title="GitHub"
           >
-            <FaGithub  style={{ marginRight: 8 }} /> Git
+            <FaGithub style={{ marginRight: 8 }} /> Git
           </a>
           <a
             className={styles.tab}
@@ -191,6 +199,7 @@ export default function Resume() {
             <FaLinkedin style={{ marginRight: 8 }} /> LinkedIn
           </a>
         </div>
+
         <Image
           src="/profile_pic.jpg"
           alt="Profile Picture"
@@ -234,13 +243,18 @@ export default function Resume() {
         ))}
       </section>
 
+      {/* About Me */}
+      <section className={styles.section} ref={aboutRef}>
+        <h2 className={styles.sectionTitle}><FaUser style={{ marginRight: 8 }} /> About Me</h2>
+        <p>
+          {/* Write a short bio here */}
+          I am a passionate full-stack developer with experience in modern web and mobile technologies. I love building clean, maintainable, and impactful software.
+        </p>
+      </section>
 
- 
-      {/* Side Project */}
-      <section className={styles.section} ref={sideProjectsRef}>
-        <h2 className={styles.sectionTitle}>
-          <FaFolderOpen style={{ marginRight: 8 }} /> Side Project
-        </h2>
+      {/* Projects */}
+      <section className={styles.section} ref={projectsRef}>
+        <h2 className={styles.sectionTitle}><FaFolderOpen style={{ marginRight: 8 }} /> Projects</h2>
         {cv.side_projects.map((sp, idx) => (
           <div key={sp.title + idx} className={styles.sideProjectItem}>
             <span className={styles.sideProjectTitle}>{sp.title}</span>
@@ -258,6 +272,28 @@ export default function Resume() {
           </div>
         ))}
       </section>
+
+      {/* Downloadable Resume */}
+      <section className={styles.section} ref={resumeRef}>
+        <h2 className={styles.sectionTitle}><FaDownload style={{ marginRight: 8 }} /> Download Resume</h2>
+        <a
+          href="/resume_Suphalerk.pdf"
+          download
+          className={styles.downloadBtn}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaDownload style={{ marginRight: 8 }} /> Download PDF
+        </a>
+      </section>
+
+      {/* Contact Form
+      <section className={styles.section} ref={contactRef}>
+        <h2 className={styles.sectionTitle}><FaEnvelope style={{ marginRight: 8 }} /> Contact</h2>
+        <ContactForm />
+      </section>
+    */}
+
     </main>
   );
 }

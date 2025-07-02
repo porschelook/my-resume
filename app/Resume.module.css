@@ -126,11 +126,11 @@
 
 @media (max-width: 600px) {
     .profileImage {
-        width: 90px;
-        height: 90px;
-        margin-top: 0.5rem;
+      display: none;
     }
 }
+
+ 
 
 .tabBar {
     display: flex;
